@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    debugger;
+    let restaurant = {
+      name: 'ASB',
+      guestCapacity: 75,
+      guestCount: 0,
+      
+      checkAvailability: function (partySize) {
+        let seatsLeft = this.guestCapacity - this.guestCount
+        return partySize <= seatsLeft
+      },
+      seatParty: function (partySize) {
+        return this.guestCount += partySize
+      },
+      removeParty: function (partySize) {
+        return this.guestCount -= partySize
+      }
+    }
+    
+    // seatParty
+    // removeParty
+    
+    
+    restaurant.seatParty(72)
+    console.log(restaurant.checkAvailability(4))
+    restaurant.removeParty(5)
+    console.log(restaurant.checkAvailability(4))
+  
+  </script>
+</body>
+</html>
