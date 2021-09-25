@@ -5,8 +5,8 @@ const todos = ['study', 'study some more', 'build a JS project', 'study some mor
 // Remove the first item from the list
 
 todos.splice(2, 1)
-todos.unshift('you forgot to love to study')
-todos.pop()
+todos.push('you forgot to love to study')
+todos.shift()
 
 console.log(`You have ${todos.length} todos`)
 console.log(todos)
