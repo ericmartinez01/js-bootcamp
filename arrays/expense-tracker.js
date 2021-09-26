@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <script>
-    const account = {
+const account = {
   name: 'Andrew Mead',
   expenses: [],
   income: [],
@@ -27,15 +17,13 @@
   getAccountSummary: function () {
     let totalExpenses = 0
     let totalIncome = 0
-   
+    let netIncome = totalIncome - totalExpenses
     this.expenses.forEach(function (expense) {
       totalExpenses = totalExpenses + expense.amount
     })
     this.income.forEach(function (income) {
       totalIncome = totalIncome + income.amount
     })
-
-    let netIncome = totalIncome - totalExpenses
 
     return `${this.name} has a balance of $${netIncome}. $${totalIncome} in income. $${totalExpenses} in expenses.`
   }
@@ -52,7 +40,3 @@ account.addExpense('Rent', 950)
 account.addExpense('Coffee', 2)
 account.addIncome('Job', 1000)
 console.log(account.getAccountSummary())
-
-  </script>
-</body>
-</html>
