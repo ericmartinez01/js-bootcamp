@@ -1,19 +1,26 @@
-// DOM - Document Object Model
+const notes = [{
+  title: 'my next trip',
+  body: 'I would like to go to Spain'
+}, {
+  title: 'Habbits to work on',
+  body: 'Exercise. Eating a bit better'
+}, {
+  title: 'Office modification',
+  body: 'Get a new seat'
+}]
 
-// Query and remove
-// const p = document.querySelector('p')
-// p.remove()
-
-// Query all and remove
-const ps = document.querySelectorAll('p')
-
-ps.forEach(function (p) {
-  
-  // console.log(p.textContent)
-  // p.remove()
+document.querySelector('#create-note').addEventListener('click', function (e) {
+  console.log('Did this work?')
+  e.target.textContent = 'Button has been clicked!'
 })
 
-// Add a new element
-const newParagraph = document.createElement('p')
-newParagraph.textContent = 'This is a new element from JavaScript'
-document.querySelector('body').appendChild(newParagraph)
+
+document.querySelector('#remove-all').addEventListener('click', function () {
+  document.querySelectorAll('.note').forEach(function (note) {
+    note.remove()
+  })
+})
+
+document.querySelector('#search-text').addEventListener('input', function (e) {
+  console.log(e.target.value)
+})
