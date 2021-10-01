@@ -1,30 +1,26 @@
-const todos = [
-  {
-    text:'study',
-    completed: true
-  }, {
-    text: 'study some more',
-    completed: false
-  }, { 
-    text: 'build a JS project',
-    completed: true
-  }, {
-    text: 'buy food',
-    completed: false
-  }, {
-    text: 'before bed time study session',
-    completed: true
-  }]
+// 1. Delete dummy data
+// 2. Read and parse the data when the app starts up
+// 3. Stringify and write the data when new data is added
+
+
+let todos = []
 
 const filters = {
   searchText: '',
   hideCompleted: false
 }
 
+const todosJSON = localStorage.getItem('todos')
+
+if (todosJSON !== null) {
+  todos = JSON.parse(todosJSON)
+}
+
 const renderTodos = function (todos, filters) {
   const filteredTodos = todos.filter(function (todo) {
     const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
     const hideCompletedMatch = !filters.hideCompleted || !todo.completed
+
     return searchTextMatch && hideCompletedMatch
   })
 
@@ -50,7 +46,7 @@ renderTodos(todos, filters);
 // Listen for filter change
 document.querySelector('#search-text').addEventListener('input', function (e) {
   filters.searchText = e.target.value
-  renderTodos(todos, filters);
+  renderTodos(todos, filters)
 })
 
 // Listen for form submit button. -- adding and a new todo
@@ -60,8 +56,9 @@ document.querySelector('#new-todo').addEventListener('submit', function (e) {
     text: e.target.elements.text.value,
     completed: false
   })
-  e.target.elements.text.value = ''
+  localStorage.setItem('todos', JSON.stringify(todos))
   renderTodos(todos, filters)
+  e.target.elements.text.value = ''
 })
 
 document.querySelector('#completed-checkbox').addEventListener('change', function (e) {
