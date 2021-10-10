@@ -15,6 +15,12 @@ const renderNotes = function (notes, filters) {
   const filteredNotes = notes.filter(function (note) {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
   })
+<<<<<<< Updated upstream
+=======
+  const newEL = document.createElement('p')
+  newEL.textContent = 
+}
+>>>>>>> Stashed changes
 
   const notesDiv = document.querySelector('#notes')
   notesDiv.innerHTML = '' 
