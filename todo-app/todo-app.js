@@ -13,7 +13,7 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
   renderTodos(todos, filters)
 })
 
-// Listen for form submit button. -- adding and a new todo
+// Listen for form submit button. -- adding a new todo
 document.querySelector('#new-todo').addEventListener('submit', function (e) {
   e.preventDefault()
   todos.push({

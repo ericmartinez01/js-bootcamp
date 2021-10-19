@@ -15,8 +15,13 @@ const saveNotes = function (notes) {
 }
 
 // Remove a note from the list -- Need to use findIndex array method I think
-const remoteNote = function (id) {
-
+const removeNote = function (id) {
+  const noteIndex = notes.findIndex(function (note) {
+    return note.id === id
+  })
+  if (noteIndex > -1) {
+    notes.splice(noteIndex, 1)
+  }
 }
 
 // Generate the DOM structure for a note
@@ -30,6 +35,7 @@ const generateNoteDOM = function (note) {
   noteEl.appendChild(button)
   button.addEventListener('click', function () {
     removeNote(note.id)
+    saveNotes(notes)
     renderNotes(notes, filters)
   })
 
