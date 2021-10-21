@@ -14,7 +14,7 @@ const saveNotes = function (notes) {
   localStorage.setItem('notes', JSON.stringify(notes))
 }
 
-// Remove a note from the list -- Need to use findIndex array method I think
+// Remove a note from the list
 const removeNote = function (id) {
   const noteIndex = notes.findIndex(function (note) {
     return note.id === id
