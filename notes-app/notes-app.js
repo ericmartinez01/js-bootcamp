@@ -8,7 +8,10 @@ renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
   const id = uuidv4()
+  const timestamp = moment().valueOf()
   notes.push({
+    createdAt: timestamp,
+    updatedAt: timestamp,
     id: id,
     title: '',
     body: ''
@@ -33,18 +36,6 @@ window.addEventListener('storage', function (e) {
   }
 })
 
-// 1. Create two dates in the past (use string for Date)
-// 2. Get timestamps for both
-// 3. Figure out which is first and print its time (use toString)
-
-const date1 = new Date('February 14 1987')
-const date2 = new Date('November 17 1987')
-
-const timestamp1 = date1.getTime()
-const timestamp2 = date2.getTime()
-
-if (timestamp1 > timestamp2) {
-  console.log(date2.toString())
-} else {
-  console.log(date1.toString());
-}
+// 1. Add createdAt and updatedAt to the new notes (store timestamp)
+// 2. Update updatedAt when someone edits a title or body
+// 3. Delete all old notes before testing
