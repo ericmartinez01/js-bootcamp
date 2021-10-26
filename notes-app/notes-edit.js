@@ -45,7 +45,6 @@ window.addEventListener('storage', function (e) {
 
     if (note === undefined) { 
       location.assign('index.html')
-    
     }
     
     titleElement.value = note.title
