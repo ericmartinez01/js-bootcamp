@@ -1,9 +1,8 @@
 'use strict'
 
-// Create a method for a making a guess
-// 1. Should accept a character for guessing
-// 2. Should add unique guesses to list of guesses
-// 3. Should decrement the guesses left if a unique guess isn't a match
+// 1. Display the puzzle to the browser instead of the console
+// 2. Display the guesses left to the browser instead of console
+// 3. Separate the Hangman definition from the rest of the app code (use app.js)
 
 const Hangman = function (word, remainingGuesses) {
   this.word = word.toLowerCase().split('')
@@ -16,6 +15,16 @@ Hangman.prototype.getPuzzle = function () {
   this.word.forEach((letter) => this.guessedLetters.includes(letter) || letter === ' ' ? puzzle += letter : puzzle += '*')
   return puzzle
 } 
+
+Hangman.prototype.guessTracker = function (guesses) {
+    if(guesses > 1) {
+      return `${guesses} guesses left`
+    } else if (guesses === 1) {
+      return 'Last guess. Make it worth it!'
+    } else {
+      return 'You lost :('
+    }
+}
 
 Hangman.prototype.makeGuess = function (guess) {
   guess = guess.toLowerCase()
@@ -33,12 +42,24 @@ Hangman.prototype.makeGuess = function (guess) {
 
 const game1 = new Hangman('Cat', 2)
 
-console.log(game1.getPuzzle())
-console.log(game1.remainingGuesses)
+const gameEl = document.querySelector('#game')
+const h1El = document.createElement('h1')
+const guessEl = document.createElement('p')
+  
+h1El.textContent = game1.getPuzzle()
+gameEl.appendChild(h1El)
+guessEl.textContent = game1.guessTracker(game1.remainingGuesses)
+gameEl.appendChild(guessEl)
+
 
 window.addEventListener('keypress', function (e) {
+  gameEl.textContent = ''
+
   const guess = String.fromCharCode(e.charCode)
   game1.makeGuess(guess)
-  console.log(game1.getPuzzle())
-  console.log(game1.remainingGuesses)
+  
+  h1El.textContent = game1.getPuzzle()
+  gameEl.appendChild(h1El)
+  guessEl.textContent = game1.guessTracker(game1.remainingGuesses)
+  gameEl.appendChild(guessEl)
 })
