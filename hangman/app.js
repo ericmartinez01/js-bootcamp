@@ -16,8 +16,6 @@
 // Make two incorrect guesses to "failed"
 // Refresh the browser and guess "c", "a", and "t" to see finished
 
-console.log(game1.getStatus())
-
 const puzzleEl = document.querySelector('#puzzle')
 const guessEl = document.querySelector('#guesses')
 const bodyEl = document.querySelector('body')
@@ -32,5 +30,4 @@ window.addEventListener('keypress', function (e) {
   
   puzzleEl.textContent = game1.getPuzzle()
   guessEl.textContent = game1.guessTracker(game1.remainingGuesses)
-  console.log(game1.getStatus())
 })
