@@ -1,13 +1,31 @@
 'use strict'
 
-// 1. Display the puzzle to the browser instead of the console
-// 2. Display the guesses left to the browser instead of console
-// 3. Separate the Hangman definition from the rest of the app code (use app.js)
-
-const Hangman = function (word, remainingGuesses) {
+const Hangman = function (word, remainingGuesses, status) {
   this.word = word.toLowerCase().split('')
   this.remainingGuesses = remainingGuesses
   this.guessedLetters = []
+  this.status = 'playing'
+}
+
+Hangman.prototype.getStatus = function () {
+  const isFinished = () => {
+    let completeStatus = true
+    this.word.forEach((letter) => {
+      if (!this.guessedLetters.includes(letter)) {
+        return completeStatus = false
+      }
+      
+    })
+    return completeStatus
+  }
+
+  if(this.remainingGuesses > 0 && !isFinished()) {
+    return this.status = 'playing'
+  } else if (this.remainingGuesses === 0 && !isFinished()) {
+    return this.status = 'failed'
+  } else {
+    return this.status = 'finished'
+  }
 }
 
 Hangman.prototype.getPuzzle = function () {
@@ -38,28 +56,9 @@ Hangman.prototype.makeGuess = function (guess) {
   if (isUnique && isBadGuess ) {
     this.remainingGuesses --
   }
+  this.getStatus()
 }
 
+
+
 const game1 = new Hangman('Cat', 2)
-
-const gameEl = document.querySelector('#game')
-const h1El = document.createElement('h1')
-const guessEl = document.createElement('p')
-  
-h1El.textContent = game1.getPuzzle()
-gameEl.appendChild(h1El)
-guessEl.textContent = game1.guessTracker(game1.remainingGuesses)
-gameEl.appendChild(guessEl)
-
-
-window.addEventListener('keypress', function (e) {
-  gameEl.textContent = ''
-
-  const guess = String.fromCharCode(e.charCode)
-  game1.makeGuess(guess)
-  
-  h1El.textContent = game1.getPuzzle()
-  gameEl.appendChild(h1El)
-  guessEl.textContent = game1.guessTracker(game1.remainingGuesses)
-  gameEl.appendChild(guessEl)
-})
