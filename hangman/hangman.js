@@ -1,5 +1,12 @@
 'use strict'
 
+// 1. Disable a new guesses unless "playing"
+// 2. Setup a new method to get back a status message
+
+// Playing -> Guesses left: 3
+// Failed -> Nice try! The word was "Cat".
+// Finished -> Great work! You guessed the word.
+
 const Hangman = function (word, remainingGuesses, status) {
   this.word = word.toLowerCase().split('')
   this.remainingGuesses = remainingGuesses
@@ -40,6 +47,10 @@ Hangman.prototype.makeGuess = function (guess) {
   const isUnique = !this.guessedLetters.includes(guess)
   const isBadGuess = !this.word.includes(guess)
 
+  if (this.status !== 'playing') {
+   return 
+  }
+
   if(isUnique) {
     this.guessedLetters.push(guess)
   }
@@ -48,6 +59,17 @@ Hangman.prototype.makeGuess = function (guess) {
     this.remainingGuesses --
   }
   this.calculateStatus()
+}
+
+Hangman.prototype.getStatus = function () {
+  const answer = this.word.join('')
+  if (this.status === 'failed') {
+    return `Nice try! The word was ${answer}`
+  } else if (this.status === 'playing') {
+    return `Guesses left: ${this.remainingGuesses}`
+  } else {
+    return 'Great work! You guesses the word.'
+  }
 }
 
 
