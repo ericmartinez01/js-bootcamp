@@ -1,12 +1,5 @@
 'use strict'
 
-// 1. Disable a new guesses unless "playing"
-// 2. Setup a new method to get back a status message
-
-// Playing -> Guesses left: 3
-// Failed -> Nice try! The word was "Cat".
-// Finished -> Great work! You guessed the word.
-
 class Hangman {
   constructor(word, remainingGuesses) {
     this.word = word.toLowerCase().split('')
@@ -15,7 +8,7 @@ class Hangman {
     this.status = 'playing'
   }
   calculateStatus() {
-    const finished = this.word.every((letter) => this.guessedLetters.includes(letter))
+    const finished = this.word.every((letter) => this.guessedLetters.includes(letter) || letter === ' ')
 
     if (this.remainingGuesses === 0) {
       this.status = 'failed'
@@ -25,7 +18,7 @@ class Hangman {
       this.status = 'playing'
     }
   }
-  getPuzzle() {
+  get puzzle() {
     let puzzle = ''
     this.word.forEach((letter) => this.guessedLetters.includes(letter) || letter === ' ' ? puzzle += letter : puzzle += '*')
     return puzzle
@@ -57,7 +50,7 @@ class Hangman {
     }
     this.calculateStatus()
   }
-  getStatus() {
+  get statusMessage() {
     const answer = this.word.join('')
     if (this.status === 'failed') {
       return `Nice try! The word was ${answer}`
@@ -69,4 +62,4 @@ class Hangman {
   }
 }
 
-const game1 = new Hangman('Cat', 2)
+const game1 = new Hangman('Car parts', 2)
