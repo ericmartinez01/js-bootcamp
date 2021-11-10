@@ -1,10 +1,11 @@
-const getDataCallBack = (callback) => {
+// Callback
+const getDataCallback = (callback) => {
   setTimeout(() => {
     callback('This is my callback error', undefined, )
   }, 2000)
 }
 
-getDataCallBack((err, data) => {
+getDataCallback((err, data) => {
   if (err) {
 
   } else {
@@ -13,15 +14,18 @@ getDataCallBack((err, data) => {
 })
 
 // Promise
-const myPromise = new Promise ((resolve, reject) => {
+const getDataPromise = (num) => new Promise ((resolve, reject) => {
   setTimeout(() => {
-    // resolve('This is the data')
-    reject('This is my promise error')
+    typeof num === 'number' ? resolve(num * 2) : reject('Number must be provided')
   }, 2000)
 })
 
-myPromise.then((data) => {
+getDataPromise= (10).then((data) => {
+  return getDataPromise(data)
+}).then((data) => {
+  return getDataPromise(data)
+}).then((data) => {
   console.log(data)
-}, (err) => {
+}).catch((err) => {
   console.log(err)
 })
