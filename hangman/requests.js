@@ -9,9 +9,10 @@ const getPuzzle = async (wordCount) => {
   }
 }
 
-// Create a new function called getCurrentCountry
-// Should return a promise that resolves the country object for your current location
-// Use async/await for the new function
+const getCurrentCountry = async () => {
+  const location = await getLocation()
+  return await getCountry(location.country)
+}
 
 const getCountry = (code) => {
   const response = await fetch('http://api.countrylayer.com/v2/all?access_key=71eda2a074975c79c18ba8fc2755b7b3')
