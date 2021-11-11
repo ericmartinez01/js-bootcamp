@@ -24,7 +24,7 @@ class Hangman {
     return puzzle
   }
   guessTracker(guesses) {
-    if(guesses > 1) {
+    if (guesses > 1) {
       return guesses
     } else if (guesses === 1) {
       return guesses
@@ -36,17 +36,17 @@ class Hangman {
     guess = guess.toLowerCase()
     const isUnique = !this.guessedLetters.includes(guess)
     const isBadGuess = !this.word.includes(guess)
-  
+
     if (this.status !== 'playing') {
-     return 
+      return
     }
-  
-    if(isUnique) {
+
+    if (isUnique) {
       this.guessedLetters.push(guess)
     }
-  
-    if (isUnique && isBadGuess ) {
-      this.remainingGuesses --
+
+    if (isUnique && isBadGuess) {
+      this.remainingGuesses--
     }
     this.calculateStatus()
   }
@@ -61,5 +61,3 @@ class Hangman {
     }
   }
 }
-
-const game1 = new Hangman('Car parts', 2)
