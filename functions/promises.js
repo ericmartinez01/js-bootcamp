@@ -1,7 +1,7 @@
 // Callback
 const getDataCallback = (callback) => {
   setTimeout(() => {
-    callback('This is my callback error', undefined, )
+    callback('This is my callback error', undefined,)
   }, 2000)
 }
 
@@ -14,13 +14,13 @@ getDataCallback((err, data) => {
 })
 
 // Promise
-const getDataPromise = (num) => new Promise ((resolve, reject) => {
+const getDataPromise = (num) => new Promise((resolve, reject) => {
   setTimeout(() => {
     typeof num === 'number' ? resolve(num * 2) : reject('Number must be provided')
   }, 2000)
 })
 
-getDataPromise= (10).then((data) => {
+getDataPromise(10).then((data) => {
   return getDataPromise(data)
 }).then((data) => {
   return getDataPromise(data)

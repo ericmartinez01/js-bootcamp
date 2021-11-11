@@ -14,27 +14,29 @@
 const puzzleEl = document.querySelector('#puzzle')
 const guessEl = document.querySelector('#guesses')
 const bodyEl = document.querySelector('body')
-  
+
 puzzleEl.textContent = game1.puzzle
 guessEl.textContent = game1.statusMessage
 
 
 window.addEventListener('keypress', (e) => {
-    const guess = String.fromCharCode(e.charCode)
-    game1.makeGuess(guess)
-    
-    puzzleEl.textContent = game1.puzzle
-    guessEl.textContent = game1.statusMessage
+  const guess = String.fromCharCode(e.charCode)
+  game1.makeGuess(guess)
+
+  puzzleEl.textContent = game1.puzzle
+  guessEl.textContent = game1.statusMessage
 })
 
 getPuzzle('2').then((puzzle) => {
   console.log(puzzle)
-}, (err) => {
+}).catch((err) => {
   console.log(`Error: ${err}`)
 })
 
-getCountry('US').then((country) => {
+getLocation().then((location) => {
+  return getCountry(location.country)
+}).then((country) => {
   console.log(country.name)
-}, (err) => {
+}).catch((err) => {
   console.log(`Error: ${err}`)
 })
