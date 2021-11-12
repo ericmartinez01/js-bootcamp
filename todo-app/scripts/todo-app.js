@@ -15,9 +15,6 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
   renderTodos(todos, filters)
 })
 
-// 1. Get a trimmed version of the input
-// 2. Only add a new todo if it has content
-
 // Listen for form submit button. -- adding a new todo
 document.querySelector('#new-todo').addEventListener('submit', (e) => {
   const text = e.target.elements.text.value.trim()

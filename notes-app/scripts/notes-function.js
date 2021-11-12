@@ -108,11 +108,6 @@ const renderNotes = (notes, filters) => {
     emptyMessage.classList.add('empty-message')
     notesEl.appendChild(emptyMessage)
   }
-
-  filteredNotes.forEach((note) => {
-    const noteEl = generateNoteDOM(note)
-    document.querySelector('#notes').appendChild(noteEl)
-  })
 }
 
 // Generate the last edited message
