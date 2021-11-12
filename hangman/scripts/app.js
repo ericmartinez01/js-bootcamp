@@ -15,10 +15,6 @@ const puzzleEl = document.querySelector('#puzzle')
 const guessEl = document.querySelector('#guesses')
 let game1
 
-// puzzleEl.textContent = game1.puzzle
-// guessEl.textContent = game1.statusMessage
-
-
 window.addEventListener('keypress', (e) => {
   const guess = String.fromCharCode(e.charCode)
   game1.makeGuess(guess)
@@ -26,8 +22,14 @@ window.addEventListener('keypress', (e) => {
 })
 
 const render = () => {
-  puzzleEl.textContent = game1.puzzle
+  puzzleEl.innerHTML = ''
   guessEl.textContent = game1.statusMessage
+
+  game1.puzzle.split('').forEach((letter) => {
+      const letterEl = document.createElement('span')
+      letterEl.innerHTML = letter
+      puzzleEl.appendChild(letterEl)
+  })
 }
 
 const startGame = async () => {

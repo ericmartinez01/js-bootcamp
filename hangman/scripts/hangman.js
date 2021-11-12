@@ -57,7 +57,7 @@ class Hangman {
     } else if (this.status === 'playing') {
       return `Guesses left: ${this.remainingGuesses}`
     } else {
-      return 'Great work! You guesses the word.'
+      return 'Great work! You guessed the word.'
     }
   }
 }
